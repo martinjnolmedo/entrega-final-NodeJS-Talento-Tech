@@ -28,3 +28,34 @@ export const getProductById = async (id) => {
         console.error("Error al recibir el producto:", error);
     }
 };
+
+export const createProduct = async (newProduct) => {
+    try {
+        const docRef = await addDoc(productsCollection, newProduct);
+        return { id: docRef.id, ...newProduct };
+    } catch (error) {
+        console.error("Error al crear el producto:", error);
+    }
+}
+
+export const updateProduct = async (id, updatedProductData) => {
+    try {
+        const docRef = doc(productsCollection, id);
+        await setDoc(docRef, updatedProductData, { merge: true });
+        return { id, ...updatedProductData };
+    } catch (error) {
+        console.error("Error al actualizar el producto:", error);
+        return null;
+    }
+}
+
+export const deleteProduct = async (id) => {
+    try {
+        const docRef = doc(productsCollection, id);
+        await deleteDoc(docRef);
+        return true;
+    } catch (error) {
+        console.error("Error al eliminar el producto:", error);
+        return false;
+    }
+}

@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.json({ message: "Bienvenido!!" });
+    res.json({ message: "Bienvenido a la entrega final del curso NodeJS de TalentoTech" });
 });
 
 import productsRouter from "./src/routes/products.router.js";
